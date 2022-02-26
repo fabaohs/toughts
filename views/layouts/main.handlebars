@@ -1,0 +1,62 @@
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Favicon and my CSS -->
+    <link
+      rel="shortcut icon"
+      href="/img/favicon-toughts.ico"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="/styles/style.css" />
+
+    <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css"
+    />
+
+    <title>Toughts</title>
+  </head>
+  <body>
+
+    <nav id="navbar">
+      <a href="/" id="logo">
+        <img src="/img/toughts_logo.png" alt="Toughts logo" />
+      </a>
+
+      <ul>
+        <li><a href="/">Pensamentos</a></li>
+
+        {{#if session.userid}}
+          <li><a href="/toughts/dashboard">Dashboard</a></li>
+          <li><a href="/logout">Logout</a></li>
+        {{else}}
+          <li><a href="/login">Entrar</a></li>
+          <li><a href="/register">Registrar</a></li>
+        {{/if}}
+
+      </ul>
+
+    </nav>
+
+    <div class="container">
+
+      {{#if messages.message}}
+
+        <div class="message">{{messages.message}}</div>
+
+      {{/if}}
+
+      {{{body}}}
+    </div>
+
+    <footer>
+      <p><span>Toughts</span> &copy; 2022</p>
+      <p>Feito por <span>Fábio Henrique</span></p>
+    </footer>
+
+  </body>
+</html>
