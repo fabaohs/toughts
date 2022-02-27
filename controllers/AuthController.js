@@ -3,6 +3,8 @@
 const User = require('../models/User')
 const bcrypt = require('bcryptjs')
 
+const passValidator = require('../helpers/passValidate')
+
 module.exports = class AuthController {
 
    static register(req, res) {
@@ -16,6 +18,21 @@ module.exports = class AuthController {
       // check if name contains numbers
       if (!isNaN(name)) {
          req.flash('message', 'O nome não pode conter números.')
+
+         res.render('auth/register')
+         return
+      }
+
+      // validates password
+      if (password.length < 6) {
+         req.flash('message', 'A senha deve conter ao menos 6 caracteres')
+
+         res.render('auth/register')
+         return
+      }
+
+      if (!passValidator.passValidate(password)) {
+         req.flash('message', 'A senha deve conter caracteres maiúsculos (A - Z), minúsculos (a - z), especiais (- _ # $ !...) e números (0 - 9).')
 
          res.render('auth/register')
          return
