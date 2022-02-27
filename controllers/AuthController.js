@@ -31,6 +31,7 @@ module.exports = class AuthController {
          return
       }
 
+      // regex
       if (!passValidator.passValidate(password)) {
          req.flash('message', 'A senha deve conter caracteres maiúsculos (A - Z), minúsculos (a - z), especiais (- _ # $ !...) e números (0 - 9).')
 
